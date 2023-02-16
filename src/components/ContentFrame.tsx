@@ -1,7 +1,7 @@
 import { FC, PropsWithChildren } from "react";
 import styled from "styled-components";
 
-export const TestContentFrame: FC<PropsWithChildren> = ({ children }) => {
+export const ContentFrame: FC<PropsWithChildren> = ({ children }) => {
   return (
     <StyledContainer>
       <StyledFrame>{children}</StyledFrame>

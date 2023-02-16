@@ -1,8 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import reportWebVitals from "reportWebVitals";
+import { ThemeProvider } from "styled-components";
 import App from "App";
-import { Globalstyle } from "styles";
+import { Globalstyle, theme } from "styles";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -10,8 +11,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Globalstyle />
-    <App />
+    <ThemeProvider theme={theme}>
+      <Globalstyle />
+      <App />
+    </ThemeProvider>
   </React.StrictMode>
 );
 

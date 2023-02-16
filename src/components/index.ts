@@ -1,1 +1,2 @@
-export { TestContentFrame } from "./TestContentFrame";
+export { ContentFrame } from "./ContentFrame";
+export { Button } from "./Button";
