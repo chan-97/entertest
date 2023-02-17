@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 interface ButtonProps {
   text: string;
+  onClick: () => void;
 }
 
-export const Button: FC<ButtonProps> = ({ text }) => {
-  return <StyledButton>{text}</StyledButton>;
+export const Button: FC<ButtonProps> = ({ text, onClick }) => {
+  return <StyledButton onClick={onClick}>{text}</StyledButton>;
 };
 
 const StyledButton = styled.button`

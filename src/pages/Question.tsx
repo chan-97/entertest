@@ -1,6 +1,10 @@
 import { FC } from "react";
-import { ContentFrame } from "components";
+import { ContentFrame, ProgressBar } from "components";
 
 export const Question: FC = () => {
-  return <ContentFrame></ContentFrame>;
+  return (
+    <ContentFrame>
+      <ProgressBar percentage={30} />
+    </ContentFrame>
+  );
 };
