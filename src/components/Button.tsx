@@ -4,14 +4,19 @@ import styled from "styled-components";
 interface ButtonProps {
   text: string;
   onClick: () => void;
+  width?: string;
 }
 
-export const Button: FC<ButtonProps> = ({ text, onClick }) => {
-  return <StyledButton onClick={onClick}>{text}</StyledButton>;
+export const Button: FC<ButtonProps> = ({ text, onClick, width }) => {
+  return (
+    <StyledButton width={width} onClick={onClick}>
+      {text}
+    </StyledButton>
+  );
 };
 
-const StyledButton = styled.button`
-  width: 100%;
+const StyledButton = styled.button<{ width: ButtonProps["width"] }>`
+  width: ${({ width }) => width ?? "100%"};
   height: auto;
   min-height: 54px;
   padding: 3px 6px;
