@@ -7,14 +7,18 @@ interface ProgressBarProps {
 
 export const ProgressBar: FC<ProgressBarProps> = ({ percentage }) => {
   return (
-    <>
+    <StyledProgressBox>
       <StyledProgressStep>1/12</StyledProgressStep>
-      <StyledProgressBarContainer>
+      <StyledProgressBar>
         <StyledFiller percentage={percentage} />
-      </StyledProgressBarContainer>
-    </>
+      </StyledProgressBar>
+    </StyledProgressBox>
   );
 };
+
+const StyledProgressBox = styled.div`
+  width: 85%;
+`;
 
 const StyledProgressStep = styled.div`
   display: flex;
@@ -24,7 +28,7 @@ const StyledProgressStep = styled.div`
   color: rgba(0, 0, 0, 0.3);
 `;
 
-const StyledProgressBarContainer = styled.div`
+const StyledProgressBar = styled.div`
   width: 100%;
   height: 20px;
   border-radius: 10px;

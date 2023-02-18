@@ -7,7 +7,7 @@ export const Main: FC = () => {
   const navigate = useNavigate();
 
   return (
-    <ContentFrame>
+    <ContentFrame paddingLeftRignt={"20px"}>
       <StyledLogoImgContainer>
         <StyledLogoImg />
       </StyledLogoImgContainer>

@@ -1,10 +1,17 @@
 import { FC, PropsWithChildren } from "react";
 import styled from "styled-components";
 
-export const ContentFrame: FC<PropsWithChildren> = ({ children }) => {
+interface ContentFrameProps {
+  paddingLeftRignt?: string;
+}
+
+export const ContentFrame: FC<PropsWithChildren<ContentFrameProps>> = ({
+  children,
+  paddingLeftRignt
+}) => {
   return (
     <StyledContainer>
-      <StyledFrame>{children}</StyledFrame>
+      <StyledFrame paddingLeftRignt={paddingLeftRignt}>{children}</StyledFrame>
     </StyledContainer>
   );
 };
@@ -15,8 +22,14 @@ const StyledContainer = styled.div`
   width: 100%;
 `;
 
-const StyledFrame = styled.div`
+const StyledFrame = styled.div<{
+  paddingLeftRignt: ContentFrameProps["paddingLeftRignt"];
+}>`
   width: 100%;
   max-width: 550px;
-  padding: 0 20px;
+  ${({ paddingLeftRignt }) =>
+    paddingLeftRignt &&
+    `
+    padding: 0 ${paddingLeftRignt};
+  `}
 `;
