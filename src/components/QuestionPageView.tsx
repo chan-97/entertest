@@ -1,10 +1,10 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { ContentFrame, ProgressBar, Button } from "components";
+import { ProgressBar, Button } from "components";
 
-export const Question: FC = () => {
+export const QuestionPageView: FC = () => {
   return (
-    <ContentFrame paddingLeftRignt={"55px"}>
+    <>
       <StyledProgressContainer>
         <ProgressBar percentage={30} />
       </StyledProgressContainer>
@@ -21,7 +21,7 @@ export const Question: FC = () => {
           <Button text="17살 이상" onClick={() => console.log("")} />
         </StyledButtonsContainer>
       </StyledQuestionContainer>
-    </ContentFrame>
+    </>
   );
 };
 

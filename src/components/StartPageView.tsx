@@ -1,13 +1,16 @@
 import { FC } from "react";
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { ContentFrame, Button } from "components";
+import { Button } from "components";
 
-export const Main: FC = () => {
-  const navigate = useNavigate();
+interface StartPageViewProps {
+  onClickStartButton: () => void;
+}
 
+export const StartPageView: FC<StartPageViewProps> = ({
+  onClickStartButton
+}) => {
   return (
-    <ContentFrame paddingLeftRignt={"20px"}>
+    <>
       <StyledLogoImgContainer>
         <StyledLogoImg />
       </StyledLogoImgContainer>
@@ -22,11 +25,11 @@ export const Main: FC = () => {
       <StyledButtonContainer>
         <Button
           text="테스트 시작하기"
-          onClick={() => navigate("/question")}
+          onClick={onClickStartButton}
           width={"70%"}
         />
       </StyledButtonContainer>
-    </ContentFrame>
+    </>
   );
 };
 
