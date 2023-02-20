@@ -1,26 +1,54 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { ProgressBar, Button } from "components";
+import {
+  UseContentQuestionState,
+  UseContentQuestionUpdate
+} from "hooks/useContentQuestion";
 
-export const QuestionPageView: FC = () => {
+interface QuestionPageViewProps {
+  currentQuestion: UseContentQuestionState["currentQuestion"];
+  onClickAnswer: UseContentQuestionUpdate["onClickAnswer"];
+}
+
+export const QuestionPageView: FC<QuestionPageViewProps> = ({
+  currentQuestion,
+  onClickAnswer
+}) => {
   return (
     <>
       <StyledProgressContainer>
         <ProgressBar percentage={30} />
       </StyledProgressContainer>
-      <StyledQuestionContainer>
-        <StyledQuestionImg />
-        <StyledQuestionNumber>Q1.</StyledQuestionNumber>
-        <StyledQuestionTextContainer>
-          <StyledQuestionText>
-            나는 몇살 때부터 오디션을 보기 시작했나요?
-          </StyledQuestionText>
-        </StyledQuestionTextContainer>
-        <StyledButtonsContainer>
-          <Button text="16살 이하" onClick={() => console.log("")} />
-          <Button text="17살 이상" onClick={() => console.log("")} />
-        </StyledButtonsContainer>
-      </StyledQuestionContainer>
+      {currentQuestion && (
+        <StyledQuestionContainer>
+          <StyledQuestionImg src={currentQuestion.imgSrc} />
+          <StyledQuestionNumber>
+            {`Q${currentQuestion.questionNumber}.`}
+          </StyledQuestionNumber>
+          <StyledQuestionTextContainer>
+            <StyledQuestionText>
+              {currentQuestion.questionText}
+            </StyledQuestionText>
+          </StyledQuestionTextContainer>
+          <StyledButtonsContainer>
+            {currentQuestion.answers.map((answer, i) => {
+              return (
+                <Button
+                  key={i}
+                  text={answer.text}
+                  onClick={() =>
+                    onClickAnswer(
+                      currentQuestion.questionNumber,
+                      answer.alphabet
+                    )
+                  }
+                />
+              );
+            })}
+          </StyledButtonsContainer>
+        </StyledQuestionContainer>
+      )}
     </>
   );
 };
