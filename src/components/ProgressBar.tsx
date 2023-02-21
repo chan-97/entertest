@@ -1,16 +1,31 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import styled from "styled-components";
+import { UseContentQuestionState } from "hooks/useContentQuestion";
 
 interface ProgressBarProps {
-  percentage: number;
+  currentQuestionIndex: UseContentQuestionState["currentQuestionIndex"];
+  totalProgressStep: UseContentQuestionState["totalProgressStep"];
 }
 
-export const ProgressBar: FC<ProgressBarProps> = ({ percentage }) => {
+export const ProgressBar: FC<ProgressBarProps> = ({
+  currentQuestionIndex,
+  totalProgressStep
+}) => {
+  const progressPercentage = useMemo(() => {
+    if (currentQuestionIndex !== -1) {
+      return (100 / totalProgressStep) * currentQuestionIndex;
+    }
+
+    return 100;
+  }, [currentQuestionIndex, totalProgressStep]);
+
   return (
     <StyledProgressBox>
-      <StyledProgressStep>1/12</StyledProgressStep>
+      <StyledProgressStep end={currentQuestionIndex === -1}>
+        {`${currentQuestionIndex + 1}/${totalProgressStep}`}
+      </StyledProgressStep>
       <StyledProgressBar>
-        <StyledFiller percentage={percentage} />
+        <StyledFiller percentage={progressPercentage} />
       </StyledProgressBar>
     </StyledProgressBox>
   );
@@ -20,12 +35,17 @@ const StyledProgressBox = styled.div`
   width: 85%;
 `;
 
-const StyledProgressStep = styled.div`
+const StyledProgressStep = styled.div<{ end: boolean }>`
   display: flex;
   justify-content: flex-end;
   margin: 0 3px 3px 0;
   font-size: 12px;
   color: rgba(0, 0, 0, 0.3);
+  ${({ end }) =>
+    end &&
+    `
+    visibility: hidden;
+  `}
 `;
 
 const StyledProgressBar = styled.div`

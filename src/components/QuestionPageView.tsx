@@ -7,18 +7,25 @@ import {
 } from "hooks/useContentQuestion";
 
 interface QuestionPageViewProps {
+  currentQuestionIndex: UseContentQuestionState["currentQuestionIndex"];
+  totalProgressStep: UseContentQuestionState["totalProgressStep"];
   currentQuestion: UseContentQuestionState["currentQuestion"];
   onClickAnswer: UseContentQuestionUpdate["onClickAnswer"];
 }
 
 export const QuestionPageView: FC<QuestionPageViewProps> = ({
+  currentQuestionIndex,
+  totalProgressStep,
   currentQuestion,
   onClickAnswer
 }) => {
   return (
     <>
       <StyledProgressContainer>
-        <ProgressBar percentage={30} />
+        <ProgressBar
+          currentQuestionIndex={currentQuestionIndex}
+          totalProgressStep={totalProgressStep}
+        />
       </StyledProgressContainer>
       {currentQuestion && (
         <StyledQuestionContainer>

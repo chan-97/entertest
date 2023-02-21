@@ -16,6 +16,8 @@ interface ContentQuestionState {
 
 export interface UseContentQuestionState {
   currentQuestion: ContentQuestionState | undefined;
+  currentQuestionIndex: number;
+  totalProgressStep: number;
 }
 
 export interface UseContentQuestionUpdate {
@@ -120,6 +122,10 @@ export const useContentQuestion = (): [
 
   const currentQuestion = contentQuestion.find((question) => question.active);
 
+  const currentQuestionIndex = contentQuestion.findIndex(
+    (question) => question.active
+  );
+
   const onClickAnswer = (
     currentQuestionNumber: number,
     answerAlphabet: string
@@ -141,9 +147,16 @@ export const useContentQuestion = (): [
 
   useEffect(() => {
     if (!currentQuestion) {
-      navigate(`result/${totalA}`);
+      setTimeout(() => navigate(`result/${totalA}`), 1000);
     }
   }, [currentQuestion]);
 
-  return [{ currentQuestion }, { onClickAnswer }];
+  return [
+    {
+      currentQuestion,
+      currentQuestionIndex,
+      totalProgressStep: contentQuestion.length
+    },
+    { onClickAnswer }
+  ];
 };

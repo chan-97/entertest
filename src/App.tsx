@@ -7,7 +7,7 @@ const App: FC = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Content />} />
-        <Route path="/result/:resultId" element={<Result />} />
+        <Route path="/result/:totalA" element={<Result />} />
       </Routes>
     </BrowserRouter>
   );

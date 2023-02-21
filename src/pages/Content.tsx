@@ -4,7 +4,10 @@ import { useContentQuestion } from "hooks";
 
 export const Content: FC = () => {
   const [isStart, setIsStart] = useState<boolean>(false);
-  const [{ currentQuestion }, { onClickAnswer }] = useContentQuestion();
+  const [
+    { currentQuestion, currentQuestionIndex, totalProgressStep },
+    { onClickAnswer }
+  ] = useContentQuestion();
 
   return (
     <ContentFrame paddingLeftRignt={isStart ? "55px" : "20px"}>
@@ -12,6 +15,8 @@ export const Content: FC = () => {
         <StartPageView onClickStartButton={() => setIsStart(true)} />
       ) : (
         <QuestionPageView
+          currentQuestionIndex={currentQuestionIndex}
+          totalProgressStep={totalProgressStep}
           currentQuestion={currentQuestion}
           onClickAnswer={onClickAnswer}
         />
