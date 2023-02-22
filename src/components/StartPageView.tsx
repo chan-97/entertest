@@ -1,30 +1,30 @@
 import { FC } from "react";
 import styled from "styled-components";
 import { Button } from "components";
+import { UseDisappearAnimationState } from "hooks/useDisappearAnimation";
 
-interface StartPageViewProps {
+interface StartPageViewProps extends UseDisappearAnimationState {
   onClickStartButton: () => void;
-  disappearAnimation: boolean;
 }
 
 export const StartPageView: FC<StartPageViewProps> = ({
   onClickStartButton,
-  disappearAnimation
+  isDisappearAnimation
 }) => {
   return (
     <>
       <StyledLogoImgContainer>
-        <StyledLogoImg disappearAnimation={disappearAnimation} />
+        <StyledLogoImg isDisappearAnimation={isDisappearAnimation} />
       </StyledLogoImgContainer>
       <StyledContentSubjectContainer>
-        <StyledContentTitle disappearAnimation={disappearAnimation}>
+        <StyledContentTitle isDisappearAnimation={isDisappearAnimation}>
           재미로 보는
           <br />
           나와 성향이 유사한 아이돌은?
         </StyledContentTitle>
-        <StyledSubjectImg disappearAnimation={disappearAnimation} />
+        <StyledSubjectImg isDisappearAnimation={isDisappearAnimation} />
       </StyledContentSubjectContainer>
-      <StyledButtonContainer disappearAnimation={disappearAnimation}>
+      <StyledButtonContainer isDisappearAnimation={isDisappearAnimation}>
         <Button
           text="테스트 시작하기"
           onClick={onClickStartButton}
@@ -42,12 +42,12 @@ const StyledLogoImgContainer = styled.div`
   padding-top: 36px;
 `;
 
-const StyledLogoImg = styled.img<{ disappearAnimation: boolean }>`
+const StyledLogoImg = styled.img<{ isDisappearAnimation: boolean }>`
   width: 192px;
   height: 76px;
   ${({ theme }) => theme.animations.slideUp.first};
-  ${({ theme, disappearAnimation }) =>
-    disappearAnimation && theme.animations.slideOutToLeft.first};
+  ${({ theme, isDisappearAnimation }) =>
+    isDisappearAnimation && theme.animations.slideOutToLeft.first};
 `;
 
 const StyledContentSubjectContainer = styled.section`
@@ -57,30 +57,30 @@ const StyledContentSubjectContainer = styled.section`
   padding: 10px 0 20px;
 `;
 
-const StyledContentTitle = styled.h1<{ disappearAnimation: boolean }>`
+const StyledContentTitle = styled.h1<{ isDisappearAnimation: boolean }>`
   margin-bottom: 70px;
   color: ${({ theme }) => theme.colors.primary};
   font-size: 26px;
   text-align: center;
   ${({ theme }) => theme.animations.slideUp.second};
-  ${({ theme, disappearAnimation }) =>
-    disappearAnimation && theme.animations.slideOutToLeft.second};
+  ${({ theme, isDisappearAnimation }) =>
+    isDisappearAnimation && theme.animations.slideOutToLeft.second};
 `;
 
-const StyledSubjectImg = styled.img<{ disappearAnimation: boolean }>`
+const StyledSubjectImg = styled.img<{ isDisappearAnimation: boolean }>`
   width: 100%;
   height: 280px;
   border-radius: 15px;
   ${({ theme }) => theme.animations.slideUp.third};
-  ${({ theme, disappearAnimation }) =>
-    disappearAnimation && theme.animations.slideOutToLeft.third};
+  ${({ theme, isDisappearAnimation }) =>
+    isDisappearAnimation && theme.animations.slideOutToLeft.third};
 `;
 
-const StyledButtonContainer = styled.div<{ disappearAnimation: boolean }>`
+const StyledButtonContainer = styled.div<{ isDisappearAnimation: boolean }>`
   display: flex;
   justify-content: center;
   margin: 25px 0;
   ${({ theme }) => theme.animations.slideUp.fourth};
-  ${({ theme, disappearAnimation }) =>
-    disappearAnimation && theme.animations.slideOutToLeft.fourth};
+  ${({ theme, isDisappearAnimation }) =>
+    isDisappearAnimation && theme.animations.slideOutToLeft.fourth};
 `;

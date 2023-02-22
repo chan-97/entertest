@@ -1,32 +1,27 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { ContentFrame, StartPageView, QuestionPageView } from "components";
-import { useContentQuestion } from "hooks";
+import { useContentQuestion, useDisappearAnimation } from "hooks";
 
 export const Content: FC = () => {
   const [isQuestionStart, setIsQuestionStart] = useState<boolean>(false);
-  const [disappearAnimation, setDisappearAnimation] = useState<boolean>(false);
+  const [{ isDisappearAnimation }, { onDisappearAnimation }] =
+    useDisappearAnimation();
   const [
     { currentQuestion, currentQuestionIndex, totalProgressStep },
     { onClickAnswer }
   ] = useContentQuestion();
 
   const onClickStartButton = () => {
-    setDisappearAnimation(true);
+    onDisappearAnimation();
     setTimeout(() => setIsQuestionStart(true), 1100);
   };
-
-  useEffect(() => {
-    if (disappearAnimation) {
-      setTimeout(() => setDisappearAnimation(false), 3000);
-    }
-  }, [disappearAnimation]);
 
   return (
     <ContentFrame paddingLeftRignt={isQuestionStart ? "55px" : "20px"}>
       {!isQuestionStart ? (
         <StartPageView
           onClickStartButton={onClickStartButton}
-          disappearAnimation={disappearAnimation}
+          isDisappearAnimation={isDisappearAnimation}
         />
       ) : (
         <QuestionPageView

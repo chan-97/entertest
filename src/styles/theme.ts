@@ -28,19 +28,30 @@ const slideOutToLeft = keyframes`
   }
 `;
 
+const slideInFromRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
 const animations = {
   slideUp: {
     first: css`
-      animation: 0.6s ease-out 0s ${slideUp};
+      animation: 0.5s ease-out ${slideUp};
     `,
     second: css`
-      animation: 0.6s ease-out 0.1s ${slideUp};
+      animation: 0.6s ease-out ${slideUp};
     `,
     third: css`
-      animation: 0.6s ease-out 0.2s ${slideUp};
+      animation: 0.7s ease-out ${slideUp};
     `,
     fourth: css`
-      animation: 0.6s ease-out 0.3s ${slideUp};
+      animation: 0.8s ease-out ${slideUp};
     `
   },
   slideOutToLeft: {
@@ -55,6 +66,20 @@ const animations = {
     `,
     fourth: css`
       animation: 0.8s ease-out 0.3s forwards ${slideOutToLeft};
+    `
+  },
+  slideInFromRight: {
+    first: css`
+      animation: 0.5s ease-out ${slideInFromRight};
+    `,
+    second: css`
+      animation: 0.6s ease-out ${slideInFromRight};
+    `,
+    third: css`
+      animation: 0.7s ease-out ${slideInFromRight};
+    `,
+    fourth: css`
+      animation: 0.8s ease-out ${slideInFromRight};
     `
   }
 };

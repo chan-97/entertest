@@ -6,12 +6,9 @@ import {
   UseContentQuestionUpdate
 } from "hooks/useContentQuestion";
 
-interface QuestionPageViewProps {
-  currentQuestionIndex: UseContentQuestionState["currentQuestionIndex"];
-  totalProgressStep: UseContentQuestionState["totalProgressStep"];
-  currentQuestion: UseContentQuestionState["currentQuestion"];
-  onClickAnswer: UseContentQuestionUpdate["onClickAnswer"];
-}
+interface QuestionPageViewProps
+  extends UseContentQuestionState,
+    UseContentQuestionUpdate {}
 
 export const QuestionPageView: FC<QuestionPageViewProps> = ({
   currentQuestionIndex,
@@ -75,12 +72,14 @@ const StyledQuestionImg = styled.img`
   height: 245px;
   margin-bottom: 15px;
   border-radius: 15px;
+  ${({ theme }) => theme.animations.slideInFromRight.first};
 `;
 
 const StyledQuestionNumber = styled.div`
   font-size: 24px;
   color: ${({ theme }) => theme.colors.primary};
   text-align: center;
+  ${({ theme }) => theme.animations.slideInFromRight.second};
 `;
 
 const StyledQuestionTextContainer = styled.div`
@@ -94,6 +93,7 @@ const StyledQuestionText = styled.p`
   font-size: 16px;
   text-align: center;
   line-height: 24px;
+  ${({ theme }) => theme.animations.slideInFromRight.third};
 `;
 
 const StyledButtonsContainer = styled.div`
@@ -102,4 +102,5 @@ const StyledButtonsContainer = styled.div`
   justify-content: space-evenly;
   align-items: center;
   height: 55%;
+  ${({ theme }) => theme.animations.slideInFromRight.fourth};
 `;
