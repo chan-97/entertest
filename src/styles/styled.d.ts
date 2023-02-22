@@ -1,8 +1,9 @@
 import "styled-components";
-import { ColorsTypes } from "./theme";
+import { ColorsTypes, AnimationsTypes } from "./theme";
 
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: ColorsTypes;
+    animations: AnimationsTypes;
   }
 }

@@ -21,7 +21,9 @@ export const ProgressBar: FC<ProgressBarProps> = ({
 
   return (
     <StyledProgressBox>
-      <StyledProgressStep end={currentQuestionIndex === -1}>
+      <StyledProgressStep
+        end={currentQuestionIndex === -1 ? "true" : undefined}
+      >
         {`${currentQuestionIndex + 1}/${totalProgressStep}`}
       </StyledProgressStep>
       <StyledProgressBar>
@@ -35,7 +37,7 @@ const StyledProgressBox = styled.div`
   width: 85%;
 `;
 
-const StyledProgressStep = styled.div<{ end: boolean }>`
+const StyledProgressStep = styled.div<{ end: string | undefined }>`
   display: flex;
   justify-content: flex-end;
   margin: 0 3px 3px 0;
