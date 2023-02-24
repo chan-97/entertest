@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, Dispatch, SetStateAction } from "react";
 
 interface ContentAnswer {
   alphabet: string;
@@ -21,10 +20,7 @@ export interface UseContentQuestionState {
 }
 
 export interface UseContentQuestionUpdate {
-  onClickAnswer: (
-    currentQuestionNumber: number,
-    answerAlphabet: string
-  ) => void;
+  setContentQuestion: Dispatch<SetStateAction<ContentQuestionState[]>>;
 }
 
 const initialContentQuestion = [
@@ -114,11 +110,9 @@ export const useContentQuestion = (): [
   UseContentQuestionState,
   UseContentQuestionUpdate
 ] => {
-  const [totalA, setTotalA] = useState<number>(0);
   const [contentQuestion, setContentQuestion] = useState<
     ContentQuestionState[]
   >(initialContentQuestion);
-  const navigate = useNavigate();
 
   const currentQuestion = contentQuestion.find((question) => question.active);
 
@@ -126,37 +120,12 @@ export const useContentQuestion = (): [
     (question) => question.active
   );
 
-  const onClickAnswer = (
-    currentQuestionNumber: number,
-    answerAlphabet: string
-  ) => {
-    if (answerAlphabet === "A") {
-      setTotalA((currentState) => currentState + 1);
-    }
-
-    // move question
-    setContentQuestion((currentState) => {
-      return currentState.map((question) => {
-        return {
-          ...question,
-          active: question.questionNumber === currentQuestionNumber + 1
-        };
-      });
-    });
-  };
-
-  useEffect(() => {
-    if (!currentQuestion) {
-      setTimeout(() => navigate(`result/${totalA}`), 1000);
-    }
-  }, [currentQuestion]);
-
   return [
     {
       currentQuestion,
       currentQuestionIndex,
       totalProgressStep: contentQuestion.length
     },
-    { onClickAnswer }
+    { setContentQuestion }
   ];
 };

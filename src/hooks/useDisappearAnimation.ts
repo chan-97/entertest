@@ -1,11 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export interface UseDisappearAnimationState {
   isDisappearAnimation: boolean;
 }
 
-interface UseDisappearAnimationUpdate {
+export interface UseDisappearAnimationUpdate {
   onDisappearAnimation: () => void;
+  offDisappearAnimation: () => void;
 }
 
 export const useDisappearAnimation = (): [
@@ -15,15 +16,12 @@ export const useDisappearAnimation = (): [
   const [isDisappearAnimation, setIsDisappearAnimation] =
     useState<boolean>(false);
 
-  const onDisappearAnimation = () => {
-    setIsDisappearAnimation(true);
-  };
+  const onDisappearAnimation = () => setIsDisappearAnimation(true);
 
-  useEffect(() => {
-    if (isDisappearAnimation) {
-      setTimeout(() => setIsDisappearAnimation(false), 3000);
-    }
-  }, [isDisappearAnimation]);
+  const offDisappearAnimation = () => setIsDisappearAnimation(false);
 
-  return [{ isDisappearAnimation }, { onDisappearAnimation }];
+  return [
+    { isDisappearAnimation },
+    { onDisappearAnimation, offDisappearAnimation }
+  ];
 };

@@ -1,16 +1,32 @@
-import { FC } from "react";
-import styled from "styled-components";
+import { FC, AnimationEvent, Dispatch, SetStateAction } from "react";
+import styled, { useTheme } from "styled-components";
 import { Button } from "components";
-import { UseDisappearAnimationState } from "hooks/useDisappearAnimation";
+import {
+  UseDisappearAnimationState,
+  UseDisappearAnimationUpdate
+} from "hooks/useDisappearAnimation";
 
-interface StartPageViewProps extends UseDisappearAnimationState {
-  onClickStartButton: () => void;
+interface StartPageViewProps
+  extends UseDisappearAnimationState,
+    UseDisappearAnimationUpdate {
+  setIsQuestionStart: Dispatch<SetStateAction<boolean>>;
 }
 
 export const StartPageView: FC<StartPageViewProps> = ({
-  onClickStartButton,
-  isDisappearAnimation
+  setIsQuestionStart,
+  isDisappearAnimation,
+  onDisappearAnimation,
+  offDisappearAnimation
 }) => {
+  const theme = useTheme();
+
+  const onAnimationEnd = (e: AnimationEvent<HTMLDivElement>) => {
+    if (theme.animations.slideOutToLeft.animationName === e.animationName) {
+      setIsQuestionStart(true);
+      offDisappearAnimation();
+    }
+  };
+
   return (
     <>
       <StyledLogoImgContainer>
@@ -24,10 +40,13 @@ export const StartPageView: FC<StartPageViewProps> = ({
         </StyledContentTitle>
         <StyledSubjectImg isDisappearAnimation={isDisappearAnimation} />
       </StyledContentSubjectContainer>
-      <StyledButtonContainer isDisappearAnimation={isDisappearAnimation}>
+      <StyledButtonContainer
+        onAnimationEnd={onAnimationEnd}
+        isDisappearAnimation={isDisappearAnimation}
+      >
         <Button
           text="테스트 시작하기"
-          onClick={onClickStartButton}
+          onClick={onDisappearAnimation}
           width={"70%"}
         />
       </StyledButtonContainer>

@@ -41,6 +41,7 @@ const slideInFromRight = keyframes`
 
 const animations = {
   slideUp: {
+    animationName: slideUp.getName(),
     first: css`
       animation: 0.5s ease-out ${slideUp};
     `,
@@ -55,6 +56,7 @@ const animations = {
     `
   },
   slideOutToLeft: {
+    animationName: slideOutToLeft.getName(),
     first: css`
       animation: 0.8s ease-out 0s forwards ${slideOutToLeft};
     `,
@@ -69,6 +71,7 @@ const animations = {
     `
   },
   slideInFromRight: {
+    animationName: slideInFromRight.getName(),
     first: css`
       animation: 0.5s ease-out ${slideInFromRight};
     `,

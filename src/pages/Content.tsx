@@ -4,31 +4,33 @@ import { useContentQuestion, useDisappearAnimation } from "hooks";
 
 export const Content: FC = () => {
   const [isQuestionStart, setIsQuestionStart] = useState<boolean>(false);
-  const [{ isDisappearAnimation }, { onDisappearAnimation }] =
-    useDisappearAnimation();
+  const [
+    { isDisappearAnimation },
+    { onDisappearAnimation, offDisappearAnimation }
+  ] = useDisappearAnimation();
   const [
     { currentQuestion, currentQuestionIndex, totalProgressStep },
-    { onClickAnswer }
+    { setContentQuestion }
   ] = useContentQuestion();
-
-  const onClickStartButton = () => {
-    onDisappearAnimation();
-    setTimeout(() => setIsQuestionStart(true), 1100);
-  };
 
   return (
     <ContentFrame paddingLeftRignt={isQuestionStart ? "55px" : "20px"}>
       {!isQuestionStart ? (
         <StartPageView
-          onClickStartButton={onClickStartButton}
+          setIsQuestionStart={setIsQuestionStart}
           isDisappearAnimation={isDisappearAnimation}
+          onDisappearAnimation={onDisappearAnimation}
+          offDisappearAnimation={offDisappearAnimation}
         />
       ) : (
         <QuestionPageView
           currentQuestionIndex={currentQuestionIndex}
           totalProgressStep={totalProgressStep}
           currentQuestion={currentQuestion}
-          onClickAnswer={onClickAnswer}
+          setContentQuestion={setContentQuestion}
+          isDisappearAnimation={isDisappearAnimation}
+          onDisappearAnimation={onDisappearAnimation}
+          offDisappearAnimation={offDisappearAnimation}
         />
       )}
     </ContentFrame>
