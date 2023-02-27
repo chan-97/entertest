@@ -2,29 +2,24 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import styled from "styled-components";
+import { useGetTestResult } from "hooks";
 import { ContentFrame, Button } from "components";
-import result_kazuha from "assets/result_kazuha.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 
 export const Result: FC = () => {
   const navigate = useNavigate();
+  const [resultData] = useGetTestResult();
 
   return (
     <ContentFrame resultPageStyle>
       <StyledResultImgContainer>
-        <StyledResultImg src={result_kazuha} />
+        <StyledResultImg src={`/assets/result_${resultData.name_eng}.png`} />
       </StyledResultImgContainer>
       <StyledDescContainer>
-        <StyledResultTitle>카즈하</StyledResultTitle>
+        <StyledResultTitle>{resultData.name_kor}</StyledResultTitle>
         <StyledLine />
-        <StyledDesc>
-          당신의 오디션 성향은 15년간 해온 발레를 포기하고, 한국 아이돌에
-          도전하는 카즈하의 용기를 닮았아요! 모든 것을 걸고 도전하는 당신에게는
-          새로운 환경에 대한 두려움, 도전에 대한 막막함, 현실적인 문제따위는
-          당신에게 아무런 영향도 주지 못합니다. 어쩌면 6개월만에 데뷔, 데뷔와
-          동시에 1위 같은 기적같은 일들도 당신에게는 너무나 당연한 일이겠네요❤️
-        </StyledDesc>
+        <StyledDesc>{resultData.description}</StyledDesc>
         <StyledShareText>친구에게 테스트 공유하기</StyledShareText>
         <StyledShareButtonsContainer>
           <CopyToClipboard
