@@ -73,10 +73,11 @@ export const QuestionPageView: FC<QuestionPageViewProps> = ({
       </StyledProgressContainer>
       {currentQuestion && (
         <StyledQuestionContainer>
-          <StyledQuestionImg
-            src={currentQuestion.imgSrc}
+          <StyledQuestionImgContainer
             isDisappearAnimation={isDisappearAnimation}
-          />
+          >
+            <StyledQuestionImg src={`/assets/${currentQuestion.imgSrc}.png`} />
+          </StyledQuestionImgContainer>
           <StyledQuestionNumber isDisappearAnimation={isDisappearAnimation}>
             {`Q${currentQuestion.questionNumber}.`}
           </StyledQuestionNumber>
@@ -115,14 +116,23 @@ const StyledQuestionContainer = styled.div`
   height: 100%;
 `;
 
-const StyledQuestionImg = styled.img<{ isDisappearAnimation: boolean }>`
+const StyledQuestionImgContainer = styled.div<{
+  isDisappearAnimation: boolean;
+}>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
   height: 245px;
   margin-bottom: 15px;
-  border-radius: 15px;
   ${({ theme }) => theme.animations.slideInFromRight.first};
   ${({ theme, isDisappearAnimation }) =>
     isDisappearAnimation && theme.animations.slideOutToLeft.first};
+`;
+
+const StyledQuestionImg = styled.img`
+  width: auto;
+  height: auto;
 `;
 
 const StyledQuestionNumber = styled.div<{ isDisappearAnimation: boolean }>`

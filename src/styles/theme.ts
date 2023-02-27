@@ -1,7 +1,7 @@
 import { DefaultTheme, keyframes, css } from "styled-components";
 
 const colors = {
-  primary: "#2196F3",
+  primary: "#ff7f00",
   white: "#ffffff",
   black: "#000000"
 };

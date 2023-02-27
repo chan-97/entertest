@@ -25,7 +25,7 @@ export interface UseContentQuestionUpdate {
 
 const initialContentQuestion = [
   {
-    imgSrc: "",
+    imgSrc: "question_emoji_1",
     questionNumber: 1,
     questionText: "나는 몇살 때부터 오디션을 보기 시작했나요?",
     answers: [
@@ -41,7 +41,7 @@ const initialContentQuestion = [
     active: true
   },
   {
-    imgSrc: "",
+    imgSrc: "question_emoji_2",
     questionNumber: 2,
     questionText: "나에게 열정이란?",
     answers: [
@@ -57,7 +57,7 @@ const initialContentQuestion = [
     active: false
   },
   {
-    imgSrc: "",
+    imgSrc: "question_emoji_3",
     questionNumber: 3,
     questionText: "내가 합격하고 싶은 기획사는?",
     answers: [
@@ -73,7 +73,7 @@ const initialContentQuestion = [
     active: false
   },
   {
-    imgSrc: "",
+    imgSrc: "question_emoji_4",
     questionNumber: 4,
     questionText: "나는 지난 달에 오디션을 본 횟수가?",
     answers: [
@@ -89,7 +89,7 @@ const initialContentQuestion = [
     active: false
   },
   {
-    imgSrc: "",
+    imgSrc: "question_emoji_5",
     questionNumber: 5,
     questionText: "나는 오디션을 볼 때 어떤 마인드?",
     answers: [

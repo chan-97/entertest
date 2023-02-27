@@ -10,7 +10,6 @@ import { faLink } from "@fortawesome/free-solid-svg-icons";
 export const Result: FC = () => {
   const navigate = useNavigate();
   const [resultData] = useGetTestResult();
-
   return (
     <ContentFrame resultPageStyle>
       <StyledResultImgContainer>
@@ -19,7 +18,16 @@ export const Result: FC = () => {
       <StyledDescContainer>
         <StyledResultTitle>{resultData.name_kor}</StyledResultTitle>
         <StyledLine />
-        <StyledDesc>{resultData.description}</StyledDesc>
+        <StyledDescription>
+          {resultData.description.split("\n").map((sentence, i) => {
+            return (
+              <StyledSentence key={i}>
+                {sentence}
+                <br />
+              </StyledSentence>
+            );
+          })}
+        </StyledDescription>
         <StyledShareText>친구에게 테스트 공유하기</StyledShareText>
         <StyledShareButtonsContainer>
           <CopyToClipboard
@@ -70,9 +78,14 @@ const StyledLine = styled.div`
   opacity: 0.5;
 `;
 
-const StyledDesc = styled.p`
+const StyledDescription = styled.div`
   padding: 10px 0;
   font-size: 18px;
+  line-height: 1.5;
+`;
+
+const StyledSentence = styled.p`
+  margin-bottom: 10px;
 `;
 
 const StyledShareText = styled.div`
