@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { useGetTestResult } from "hooks";
 import { ContentFrame, Button } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { faLink, faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
 export const Result: FC = () => {
   const navigate = useNavigate();
@@ -45,6 +45,13 @@ export const Result: FC = () => {
           text="테스트 다시하기"
           onClick={() => navigate("/")}
           width={"70%"}
+          icon={
+            <FontAwesomeIcon
+              icon={faArrowRotateLeft}
+              style={{ marginRight: "15px" }}
+              color="#fff"
+            />
+          }
         />
       </StyledRestartButtonContainer>
     </ContentFrame>

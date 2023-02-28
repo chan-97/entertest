@@ -5,6 +5,8 @@ import {
   UseDisappearAnimationState,
   UseDisappearAnimationUpdate
 } from "hooks/useDisappearAnimation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
 interface StartPageViewProps
   extends UseDisappearAnimationState,
@@ -48,6 +50,13 @@ export const StartPageView: FC<StartPageViewProps> = ({
           text="테스트 시작하기"
           onClick={onDisappearAnimation}
           width={"70%"}
+          icon={
+            <FontAwesomeIcon
+              icon={faPlay}
+              style={{ marginRight: "15px" }}
+              color="#fff"
+            />
+          }
         />
       </StyledButtonContainer>
     </>

@@ -5,17 +5,22 @@ interface ButtonProps {
   text: string;
   onClick: () => void;
   width?: string;
+  icon?: JSX.Element;
 }
 
-export const Button: FC<ButtonProps> = ({ text, onClick, width }) => {
+export const Button: FC<ButtonProps> = ({ text, onClick, width, icon }) => {
   return (
     <StyledButton width={width} onClick={onClick}>
-      {text}
+      {icon}
+      <span>{text}</span>
     </StyledButton>
   );
 };
 
 const StyledButton = styled.button<{ width: ButtonProps["width"] }>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: ${({ width }) => width ?? "100%"};
   height: auto;
   min-height: 54px;
