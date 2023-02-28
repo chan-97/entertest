@@ -10,51 +10,58 @@ import { faLink, faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons";
 export const Result: FC = () => {
   const navigate = useNavigate();
   const [resultData] = useGetTestResult();
+
   return (
-    <ContentFrame resultPageStyle>
-      <StyledResultImgContainer>
-        <StyledResultImg src={`/assets/result_${resultData.name_eng}.png`} />
-      </StyledResultImgContainer>
-      <StyledDescContainer>
-        <StyledResultTitle>{resultData.name_kor}</StyledResultTitle>
-        <StyledLine />
-        <StyledDescription>
-          {resultData.description.split("\n").map((sentence, i) => {
-            return (
-              <StyledSentence key={i}>
-                {sentence}
-                <br />
-              </StyledSentence>
-            );
-          })}
-        </StyledDescription>
-        <StyledShareText>친구에게 테스트 공유하기</StyledShareText>
-        <StyledShareButtonsContainer>
-          <CopyToClipboard
-            text={window.location.href}
-            onCopy={() => alert("링크가 복사되었습니다.")}
-          >
-            <StyledShareButton>
-              <FontAwesomeIcon icon={faLink} color="#fff" />
-            </StyledShareButton>
-          </CopyToClipboard>
-        </StyledShareButtonsContainer>
-      </StyledDescContainer>
-      <StyledRestartButtonContainer>
-        <Button
-          text="테스트 다시하기"
-          onClick={() => navigate("/")}
-          width={"70%"}
-          icon={
-            <FontAwesomeIcon
-              icon={faArrowRotateLeft}
-              style={{ marginRight: "15px" }}
-              color="#fff"
+    <>
+      {resultData.name_eng && (
+        <ContentFrame resultPageStyle>
+          <StyledResultImgContainer>
+            <StyledResultImg
+              src={`/assets/result_${resultData.name_eng}.png`}
             />
-          }
-        />
-      </StyledRestartButtonContainer>
-    </ContentFrame>
+          </StyledResultImgContainer>
+          <StyledDescContainer>
+            <StyledResultTitle>{resultData.name_kor}</StyledResultTitle>
+            <StyledLine />
+            <StyledDescription>
+              {resultData.description.split("\n").map((sentence, i) => {
+                return (
+                  <StyledSentence key={i}>
+                    {sentence}
+                    <br />
+                  </StyledSentence>
+                );
+              })}
+            </StyledDescription>
+            <StyledShareText>친구에게 테스트 공유하기</StyledShareText>
+            <StyledShareButtonsContainer>
+              <CopyToClipboard
+                text={window.location.href}
+                onCopy={() => alert("링크가 복사되었습니다.")}
+              >
+                <StyledShareButton>
+                  <FontAwesomeIcon icon={faLink} color="#fff" />
+                </StyledShareButton>
+              </CopyToClipboard>
+            </StyledShareButtonsContainer>
+          </StyledDescContainer>
+          <StyledRestartButtonContainer>
+            <Button
+              text="테스트 다시하기"
+              onClick={() => navigate("/")}
+              width={"70%"}
+              icon={
+                <FontAwesomeIcon
+                  icon={faArrowRotateLeft}
+                  style={{ marginRight: "15px" }}
+                  color="#fff"
+                />
+              }
+            />
+          </StyledRestartButtonContainer>
+        </ContentFrame>
+      )}
+    </>
   );
 };
 

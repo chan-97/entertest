@@ -12,7 +12,16 @@ export const Button: FC<ButtonProps> = ({ text, onClick, width, icon }) => {
   return (
     <StyledButton width={width} onClick={onClick}>
       {icon}
-      <span>{text}</span>
+      <div>
+        {text.split("\n").map((sentence, i) => {
+          return (
+            <span key={i}>
+              {sentence}
+              <br />
+            </span>
+          );
+        })}
+      </div>
     </StyledButton>
   );
 };

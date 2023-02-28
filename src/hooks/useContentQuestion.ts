@@ -63,7 +63,7 @@ const initialContentQuestion = [
     answers: [
       {
         alphabet: "A",
-        text: "사람 일 모른다! 일단 기회가 주어지는 회사 어디든!"
+        text: "사람 일 모른다!\n일단 기회가 주어지는 회사 어디든!"
       },
       {
         alphabet: "B",
