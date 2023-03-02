@@ -32,7 +32,10 @@ export const StartPageView: FC<StartPageViewProps> = ({
   return (
     <>
       <StyledLogoImgContainer>
-        <StyledLogoImg isDisappearAnimation={isDisappearAnimation} />
+        <StyledLogoImg
+          src="/assets/start_logo.png"
+          isDisappearAnimation={isDisappearAnimation}
+        />
       </StyledLogoImgContainer>
       <StyledContentSubjectContainer>
         <StyledContentTitle isDisappearAnimation={isDisappearAnimation}>
@@ -40,7 +43,10 @@ export const StartPageView: FC<StartPageViewProps> = ({
           <br />
           나와 성향이 유사한 아이돌은?
         </StyledContentTitle>
-        <StyledSubjectImg isDisappearAnimation={isDisappearAnimation} />
+        <StyledMainImg
+          src="/assets/start_main.png"
+          isDisappearAnimation={isDisappearAnimation}
+        />
       </StyledContentSubjectContainer>
       <StyledButtonContainer
         onAnimationEnd={onAnimationEnd}
@@ -71,8 +77,8 @@ const StyledLogoImgContainer = styled.div`
 `;
 
 const StyledLogoImg = styled.img<{ isDisappearAnimation: boolean }>`
-  width: 192px;
-  height: 76px;
+  width: 90px;
+  height: 90px;
   ${({ theme }) => theme.animations.slideUp.first};
   ${({ theme, isDisappearAnimation }) =>
     isDisappearAnimation && theme.animations.slideOutToLeft.first};
@@ -95,9 +101,9 @@ const StyledContentTitle = styled.h1<{ isDisappearAnimation: boolean }>`
     isDisappearAnimation && theme.animations.slideOutToLeft.second};
 `;
 
-const StyledSubjectImg = styled.img<{ isDisappearAnimation: boolean }>`
+const StyledMainImg = styled.img<{ isDisappearAnimation: boolean }>`
   width: 100%;
-  height: 280px;
+  height: auto;
   border-radius: 15px;
   ${({ theme }) => theme.animations.slideUp.third};
   ${({ theme, isDisappearAnimation }) =>
