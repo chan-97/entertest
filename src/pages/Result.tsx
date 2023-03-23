@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import styled from "styled-components";
 import { useGetTestResult } from "hooks";
-import { ContentFrame, Button } from "components";
+import { ContentFrame, Button, Footer } from "components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLink, faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -59,6 +59,7 @@ export const Result: FC = () => {
               }
             />
           </StyledRestartButtonContainer>
+          <Footer />
         </ContentFrame>
       )}
     </>
@@ -131,5 +132,5 @@ const StyledRestartButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0 100px;
+  margin: 10px 0 40px;
 `;

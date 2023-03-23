@@ -53,6 +53,9 @@ const animations = {
     `,
     fourth: css`
       animation: 0.8s ease-out ${slideUp};
+    `,
+    fifth: css`
+      animation: 0.9s ease-out ${slideUp};
     `
   },
   slideOutToLeft: {

@@ -73,7 +73,7 @@ const StyledLogoImgContainer = styled.div`
   display: flex;
   justify-content: center;
   height: 150px;
-  padding-top: 36px;
+  padding-top: 20px;
 `;
 
 const StyledLogoImg = styled.img<{ isDisappearAnimation: boolean }>`
@@ -92,7 +92,7 @@ const StyledContentSubjectContainer = styled.section`
 `;
 
 const StyledContentTitle = styled.h1<{ isDisappearAnimation: boolean }>`
-  margin-bottom: 70px;
+  margin-bottom: 60px;
   color: ${({ theme }) => theme.colors.primary};
   font-size: 26px;
   text-align: center;
