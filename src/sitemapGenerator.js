@@ -12,5 +12,17 @@ const generateSitemap = () => {
 </urlset>`
 }
 
-fs.writeFileSync('public/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>${generateSitemap()}`);
-console.log("generate sitemap");
+fs.writeFile('public/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>${generateSitemap()}`, (writeFileError) => {
+  if (writeFileError) {
+    console.log('writeFileError: ', writeFileError);
+  } else {
+    console.log("generate sitemap");
+    fs.readFile('public/sitemap.xml', 'utf8', (readFileError, data) => {
+      if (readFileError) {
+        console.log("readFileError: ", readFileError)
+        return;
+      }
+      console.log(data);
+    });
+  }
+});
