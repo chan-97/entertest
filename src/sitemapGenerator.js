@@ -13,3 +13,4 @@ const generateSitemap = () => {
 }
 
 fs.writeFileSync('public/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>${generateSitemap()}`);
+console.log("generate sitemap");
