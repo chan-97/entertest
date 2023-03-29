@@ -1,4 +1,4 @@
-import fs from "fs"
+import fs from "fs";
 
 const generateSitemap = () => {
   const date = new Date().toISOString().slice(0, 10);
