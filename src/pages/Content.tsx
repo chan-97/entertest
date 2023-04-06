@@ -3,6 +3,7 @@ import {
   ContentFrame,
   StartPageView,
   QuestionPageView,
+  AdfitBanner,
   Footer
 } from "components";
 import { useContentQuestion, useDisappearAnimation } from "hooks";
@@ -31,6 +32,18 @@ export const Content: FC = () => {
             isDisappearAnimation={isDisappearAnimation}
             onDisappearAnimation={onDisappearAnimation}
             offDisappearAnimation={offDisappearAnimation}
+          />
+          <AdfitBanner
+            className="adfit--300250"
+            dataAdUnit="DAN-aIgIwJjE7qp66ty3"
+            dataAdWidth={300}
+            dataAdHeight={250}
+          />
+          <AdfitBanner
+            className="adfit--250250"
+            dataAdUnit="DAN-JOhFAvgNnb4cz0RH"
+            dataAdWidth={250}
+            dataAdHeight={250}
           />
           <Footer isAnimation />
         </>
